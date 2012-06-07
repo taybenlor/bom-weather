@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module BOMWeather
   class Query
     attr_accessor :uri
@@ -7,7 +9,7 @@ module BOMWeather
     end
     
     def execute
-      Parser.new(`curl "#{@uri}"`)
+      Parser.new(open(@uri).read)
     end
   end
 end
